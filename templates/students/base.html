@@ -1,0 +1,148 @@
+<!-- Paste this as templates/students/base.html -->
+<!-- Look for new changes by finding: 'New addition/change' -->
+<!-- New Addition Summary: " block stylesheets ",  "block vega-lite-main", "navigation entry for vega-lite"-->
+
+
+
+{% load static %}
+{% now "U" as ts %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    {% block title %}illinois.edu{% endblock %}
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Simple styling (Bootstrap for convenience, optional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="{% static 'css/normalize.css' %}?v={{ ts }}">
+  <link rel="stylesheet" href="{% static 'css/skeleton.css' %}?v={{ ts }}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ ts }}">
+
+  <!-- small polish: favicon (uses your logo asset) -->
+  <link rel="icon" href="{% static 'css/illinois_logo.png' %}">
+  <meta name="theme-color" content="#13294B">
+
+  <!-- New addition/change -->
+  <!-- Vega-lite Stylesheets -->
+    {% block stylesheets %}
+
+    {% endblock %}
+
+</head>
+<body class="bg-light">
+
+  <!-- Site Header -->
+  <header class="bg-primary text-white py-3 mb-4">
+    <div class="container d-flex align-items-center gap-3">
+      <a class="d-inline-flex align-items-center text-white text-decoration-none" href="{% url 'student-list-url' %}">
+        <!-- uses your uploaded logo file -->
+        <img src="{% static 'css/illinois_logo.png' %}" alt="Illinois logo" width="36" height="36" class="me-2">
+        <div class="lh-sm">
+          <h1 class="h4 mb-0">illinois.edu</h1>
+          <span class="small opacity-75">Course Information System</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mb-4" aria-label="Primary">
+    <div class="container">
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item"><a class="nav-link" href="{% url 'section-list-url' %}">Sections</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'student-list-url' %}">Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'enrollment-list-url' %}">Registrations</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'export-reports-url' %}">Reports (Export)</a></li>
+
+        <!-- New addition/change: Vega-lite link. -->
+        <li class="nav-item"><a class="nav-link" href="{% url 'chart-vega-lite' %}">Vega-Lite Demo</a></li>
+
+
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container mb-5">
+
+    <!-- This should be the name of the block that will show it's content here. -->
+    <!-- I've changed the name of this block from student_content to content in Week 6. -->
+    {% block content %}
+
+      <p class="text-muted">This is default content. </p>
+
+    {% endblock %}
+
+
+    {# NEW: a spot for pages to render a search bar that SUBMITS to a view #}
+    {% block send_search %}
+
+    {% endblock %}
+
+
+
+    {# NEW: a spot to DISPLAY the results returned from the view #}
+    {% block filter %}
+
+    {% endblock %}
+
+     <!-- NEW block for aggregations -->
+    {% block stats %}
+
+    {% endblock %}
+
+    <!-- New addition/change -->
+    <!-- NEW block for Vega-Lite -->
+    {% block vega-lite-main %}
+
+    {% endblock %}
+
+
+  </main>
+
+
+<!-- New addition/change: I modified this to include citations for normalize.css -->
+  <!-- Footer -->
+<footer class="bg-dark text-white py-3 mt-4">
+  <div class="container text-center small">
+    <p class="mb-1">illinois.edu class demonstration</p>
+
+    <p class="mb-1">
+      Portions of this project make use of open-source frameworks:
+      <a href="https://getskeleton.com/" class="text-white" target="_blank" rel="noopener">
+        Skeleton CSS
+      </a>
+      by
+      <a href="https://github.com/dhg" class="text-white" target="_blank" rel="noopener">
+        Dave Pinkham
+      </a>
+      and
+      <a href="https://necolas.github.io/normalize.css/" class="text-white" target="_blank" rel="noopener">
+        Normalize.css
+      </a>
+      by
+      <a href="https://github.com/necolas" class="text-white" target="_blank" rel="noopener">
+        Nicolas Gallagher
+      </a>,
+      both under the MIT License.
+    </p>
+
+    <p class="mb-0">
+      Course content licensed under a
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+         class="text-white" target="_blank" rel="noopener">
+        Creative Commons Attribution-ShareAlike 4.0 International License
+      </a>.
+    </p>
+  </div>
+</footer>
+
+  <!-- Optional Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>

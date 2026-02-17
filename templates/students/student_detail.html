@@ -1,0 +1,30 @@
+<!-- create a new file student_detail.html -->
+<!-- New file in: templates/students/student_detail.html-->
+
+{% extends "students/base.html" %}
+
+{% block title %}
+  Student Detail
+{% endblock %}
+
+{% block content %}
+  <!-- Student details -->
+  <h2>{{ single_student_var_for_looping }}</h2>
+  <p><strong>First name:</strong> {{ single_student_var_for_looping.first_name }}</p>
+  <p><strong>Last name:</strong> {{ single_student_var_for_looping.last_name }}</p>
+  <p><strong>Nickname:</strong> {{ single_student_var_for_looping.nickname }}</p>
+  <p><strong>Email:</strong> {{ single_student_var_for_looping.email }}</p>
+
+  <hr>
+
+  <!-- Enrolled sections -->
+  <h3>Enrolled Sections</h3>
+  <ul>
+    {% for e in enrollments_var_for_looping %}
+      <li>{{ e.section.code }} — {{ e.section.name }} ({{ e.section.term }})</li>
+    {% empty %}
+      <li><em>No sections enrolled.</em></li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

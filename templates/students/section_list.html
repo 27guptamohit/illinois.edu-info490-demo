@@ -1,0 +1,28 @@
+<!-- New File -->
+<!-- Paste code here: templates/students/section_list.html -->
+<!-- Here, we are creating new html for displaying the Section Data and the Enrollment Data -->
+{% extends "students/base.html" %}
+
+{% block title %}
+    Section List
+{% endblock %}
+
+{% block content %}
+    <h2>Section List</h2>
+    <ul>
+
+        {% for section_for_loop in section_rows_for_looping %}
+
+            <li>
+                <a href=""> {{ section_for_loop }}</a>
+            </li>
+
+        <!-- Step 2: This function tells what to return in case table has no data. -->
+        {% empty %}
+
+            <li>No sections yet!</li>
+
+        <!-- Step 3: Tell html here that the for loop has ended.-->
+        {% endfor %}
+    </ul>
+{% endblock %}

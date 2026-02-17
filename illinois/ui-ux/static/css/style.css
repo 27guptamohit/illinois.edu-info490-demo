@@ -1,0 +1,195 @@
+/* Typography */
+body {
+  color: #111827;
+  background: #ffffff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.55;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #13294B;   /* Illinois blue fallback */
+  letter-spacing: 0.2px;
+}
+
+/* Header / Brand bar */
+.site-header {
+  background: linear-gradient(180deg, #13294B, #0c1e35);
+  color: #fff;
+  border-bottom: 4px solid #FF552E;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.brand__logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.2));
+}
+
+.brand__title {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+/* Navigation */
+.nav {
+  margin-left: auto;
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: #fff;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  background: rgba(255,255,255,.1);
+}
+
+/* Content containers */
+.section {
+  padding: 1rem 0;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(19,41,75,0.05);
+}
+
+.card + .card {
+  margin-top: 1rem;
+}
+
+.card__header {
+  padding: .75rem .9rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  color: #13294B;
+}
+
+.card__body {
+  padding: .9rem;
+}
+
+/* List groups (search results) */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li {
+  padding: .55rem .75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.list li:last-child {
+  border-bottom: 0;
+}
+
+.list a {
+  color: #13294B;
+  text-decoration: none;
+}
+
+.list a:hover {
+  text-decoration: underline;
+}
+
+/* Search bar cluster */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.search-bar input[type="search"] {
+  min-width: 260px;
+}
+
+.search-meta {
+  color: #6b7280;
+}
+
+/* Stats chips */
+.stats {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.stat-chip {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #13294B;
+  border-radius: 999px;
+  padding: .35rem .65rem;
+  font-size: .9rem;
+}
+
+/* Utilities */
+.muted {
+  color: #6b7280;
+}
+
+.hr {
+  height: 1px;
+  background: #e5e7eb;
+  border: 0;
+  margin: 1rem 0;
+}
+
+/* Tables compact */
+.table-compact th,
+.table-compact td {
+  padding: .5rem .6rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .brand__title {
+    font-size: 1rem;
+  }
+}
+
+/*
+Dark mode disabled for now to avoid confusing UI during class
+
+@media (prefers-color-scheme: dark) {
+  body { background: #0b1321; color: #e5e7eb; }
+  .site-header { border-bottom-color: #ff7b59; }
+  .card { background: #111827; border-color: #1f2937; }
+  .card__header { border-color: #1f2937; color: #e5e7eb; }
+  a { color: #93c5fd; }
+  .list li { border-color: #1f2937; }
+  .stat-chip { background: #0f172a; border-color: #1f2937; color: #e5e7eb; }
+}
+*/

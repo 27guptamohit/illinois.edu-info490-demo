@@ -1,0 +1,85 @@
+# Add this file:  illinois/.gitignore
+# ================================
+# Class Notes Directory
+# ================================
+0_class_notes/
+
+# ================================
+# Django collected static files (not your source /static/)
+# ================================
+staticfiles/
+media/
+
+
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+#  ignores temp/editor backup files.
+*~
+# ignores compiled Python bytecode files.
+*.pyc
+
+
+# ================================
+# Environments & Secrets
+# ================================
+.env
+.env.*
+env.py
+venv/
+env/
+.venv/
+
+# ================================
+# Django
+# ================================
+db.sqlite3
+staticfiles/
+media/
+
+# Migration cache (safe to regenerate)
+*.log
+
+# ================================
+# macOS / Windows junk
+# ================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ================================
+# IDEs & Editors
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ================================
+# Tests & temporary files
+# ================================
+test/
+pytest_cache/
+.coverage
+htmlcov/
+
+# ================================
+# Jupyter / AI experiments
+# ================================
+.ipynb_checkpoints/
+
+# ================================
+# Node / frontend (if used later)
+# ================================
+node_modules/
+dist/
+build/
+
+
+
+
+

@@ -1,0 +1,16 @@
+{# Add in: templates/students/enrollments_chart.html #}
+{# New File #}
+
+
+{% extends "students/base.html" %}
+{% block title %}Enrollments Chart{% endblock %}
+
+{% block content %}
+  <h2 class="mb-3">Enrollments per Section (No JavaScript)</h2>
+  <p class="text-muted">This image is generated server-side by calling our JSON API, then plotted with matplotlib.</p>
+  <img
+    src="{% url 'enrollments-chart-png' %}"
+    alt="Enrollments per section chart"
+    class="img-fluid border rounded"
+  >
+{% endblock %}

@@ -1,0 +1,153 @@
+<!-- Paste code here: templates/students/student_list.html -->
+<!-- Writing new code for displaying the aggregated data.
+     I've also improved the UI to make it look more tidy. -->
+
+{% extends "students/base.html" %}
+
+{% block title %}
+    Student List
+{% endblock %}
+
+
+<!------------------------------------------------------------>
+<!-- Block: Content -->
+
+{% block content %}
+  <div class="d-flex align-items-center justify-content-between mt-3">
+    <h2 class="mb-0">Student List</h2>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body p-3">
+      <ul class="mb-0">
+        {% for student_for_loop in student_rows_for_looping %}
+          <li class="mb-1">
+            <a href="{{ student_for_loop.get_absolute_url }}">{{ student_for_loop }}</a>
+          </li>
+        {% empty %}
+          <li class="text-muted">No students yet!</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
+
+
+<!------------------------------------------------------------>
+<!-- Block: send_search -->
+
+{% block send_search %}
+  <!-- Teaching note for students:
+       • The <form> is like a mail envelope.
+       • The <input> is the message you write inside.
+       • method="get" puts the message in the URL → /students/?q=Alice
+       • Django reads request.GET['q'] and filters results.
+  -->
+  <form method="get" class="row g-2 align-items-center mt-4">
+    <div class="col-12 col-sm-6 col-md-4">
+      <input type="search" name="q" value="{{ q }}" class="form-control"
+             placeholder="Search by first name">
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" type="submit">Search</button>
+      {% if q %}<a class="btn btn-outline-secondary ms-2" href="{% url 'student-list-url' %}">Clear</a>{% endif %}
+    </div>
+  </form>
+{% endblock %}
+
+
+<!------------------------------------------------------------>
+<!-- Block: filter -->
+
+{% block filter %}
+  {% if q %}
+    <p class="text-muted mt-3 mb-2">result for “{{ q }}”</p>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        {% for s in search_results %}
+          <li class="list-group-item">
+            <a href="{{ s.get_absolute_url }}">{{ s }}</a>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-muted"><em>No students found.</em></li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <p class="text-muted mt-3">result</p>
+  {% endif %}
+{% endblock %}
+<!------------------------------------------------------------>
+<!-- : filter -->
+
+<!------------------------------------------------------------>
+<!-- Block: stats -->
+
+{% block stats %}
+    <!-- NEW: Stats and charts area for Week 7 -->
+    <hr class="my-4">
+
+  <h5 class="mb-3">Section Statistics</h5>
+
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Students per Section</strong></div>
+        <div class="card-body p-0">
+          <table class="table table-sm table-striped mb-0">
+            <thead class="table-light">
+              <tr><th>Section</th><th class="text-end">Students</th></tr>
+            </thead>
+            <tbody>
+              {% for row in students_per_section %}
+                <tr>
+                  <td>{{ row.code }} — {{ row.name }}</td>
+                  <td class="text-end">{{ row.n_students }}</td>
+                </tr>
+              {% empty %}
+                <tr><td colspan="2" class="text-muted"><em>No sections.</em></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Students per Term</strong></div>
+        <div class="card-body p-0">
+          <table class="table table-sm table-striped mb-0">
+            <thead class="table-light">
+              <tr><th>Term</th><th class="text-end">Students</th></tr>
+            </thead>
+            <tbody>
+              {% for row in students_per_term %}
+                <tr>
+                  <td>{{ row.term|default:"—" }}</td>
+                  <td class="text-end">{{ row.n_students }}</td>
+                </tr>
+              {% empty %}
+                <tr><td colspan="2" class="text-muted"><em>No term data.</em></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- ADDING CHART WITHOUT A NEW HTML PAGE: Add chart image for visual explanation -->
+  <div class="card mt-3">
+    <div class="card-header py-2"><strong>Bar Chart: Students per Section</strong></div>
+    <div class="card-body text-center">
+
+        <!-- Here, using the 'url' tag, I'm directly referencing the chart projected at a url -->
+      <img src="{% url 'chart-sections' %}" alt="Students per section chart"
+           class="img-fluid" style="max-width: 480px;">
+
+    </div>
+  </div>
+{% endblock %}

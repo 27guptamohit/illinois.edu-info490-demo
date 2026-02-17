@@ -1,0 +1,72 @@
+/* these are theme tweaks (colors/spacing/controls) */
+
+a { color: var(--il-orange); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Buttons */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  background-color: var(--il-orange);
+  border: 1px solid var(--il-orange);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  line-height: 1.2;
+  transition: transform .02s ease, background-color .2s ease, opacity .2s ease;
+}
+.button:focus, .button:hover,
+button:focus, button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #cf3f21;
+}
+.button:active, button:active { transform: translateY(1px); }
+
+/* Secondary / outline */
+.button.button-outline {
+  background: transparent;
+  color: var(--il-blue);
+  border-color: var(--il-blue);
+}
+.button.button-outline:hover { background: var(--il-blue); color: #fff; }
+
+/* Forms */
+input[type="text"], input[type="search"], input[type="email"],
+select, textarea {
+  border: 1px solid var(--il-gray-300);
+  border-radius: 10px;
+  padding: .55rem .75rem;
+}
+input::placeholder { color: var(--il-gray-600); }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+th, td { padding: .6rem .8rem; border-bottom: 1px solid var(--il-gray-300); }
+thead th { background: var(--il-gray-100); color: var(--il-blue); font-weight: 600; }
+tbody tr:hover { background: #fafbfd; }
+
+/* Grid niceties */
+.container { max-width: 980px; }
+.row + .row { margin-top: 1rem; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: .25rem .5rem;
+  border-radius: .5rem;
+  font-size: .85rem;
+  line-height: 1;
+  background: var(--il-gray-100);
+  color: var(--il-blue);
+}
+.badge.primary { background: var(--il-orange); color: #fff; }
+.badge.secondary { background: var(--il-blue); color: #fff; }

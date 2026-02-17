@@ -1,0 +1,27 @@
+<!-- Paste in templates/students/add_student.html -->
+<!-- New File -->
+
+{% extends "students/base.html" %}
+
+{% block title %}
+    Feedback Form
+{% endblock %}
+
+{% block content %}
+      <h2 class="mb-3">Feedback (Function/Class based view using same template)</h2>
+
+  <!-- the action method tells where to send the user after submitting the form. -->
+  <form
+          action="{% url 'student-list-url' %}"
+          method="post"
+          class="p-3 border rounded bg-white"
+  >
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
+
