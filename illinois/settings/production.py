@@ -16,3 +16,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'data' / 'db.sqlite3',
     }
 }
+
+# New addition
+CORS_ALLOWED_ORIGINS = [
+    "https://vega.github.io",
+    "https://vega.github.io/editor",
+]
+
+# Or if you want to allow api data access to everyone, add
+# CORS_ALLOW_ALL_ORIGINS = True
